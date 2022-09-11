@@ -101,7 +101,11 @@ function Tasks() {
               >
                 <div className={classes.box}></div>
                 {tsk.pic ? (
-                  <img className={classes.taskPic} src={tsk.pic}></img>
+                  <img
+                    className={classes.taskPic}
+                    src={tsk.pic}
+                    alt="image"
+                  ></img>
                 ) : null}
 
                 <div className={classes.taskNames}>

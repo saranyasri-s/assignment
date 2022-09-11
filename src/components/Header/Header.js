@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./Header.module.css";
-import plane from "../../assets/plane.png";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faPlane } from "@fortawesome/free-solid-svg-icons";
 function Header() {
@@ -10,7 +10,7 @@ function Header() {
         <div className={classes.planeLogo}>
           <FontAwesomeIcon
             icon={faPlane}
-            style={{ transform: "rotate(300deg)" ,color:"skyblue"}}
+            style={{ transform: "rotate(300deg)", color: "skyblue" }}
           />
         </div>
         <div className={classes.Header_left_right}>

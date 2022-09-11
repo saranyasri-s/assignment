@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 function Chats() {
   const [enteredText, setEnteredText] = useState("");
-// list of chat messages
+  // list of chat messages
   const [chats, setChats] = useState([
     {
       text: "Smiling is definitely one of the best beauty remedies. If you have a good sense of humor and a good approach to life, that’s beautiful",
@@ -64,14 +64,14 @@ function Chats() {
       amORpm = "PM";
     }
     const min = todayDate.getMinutes();
-// adding the new message sent by john wick to the array
+    // adding the new message sent by john wick to the array
     let newChatadded = {
       text: enteredText,
       personName: "Viggo",
       personType: "Receiver",
       time: `${hr}:${min} ${amORpm}`,
       day: "Today",
-      pic: person1,
+      pic: person2,
       onLineStatus: "online",
       id: Math.random(),
     };
@@ -90,14 +90,14 @@ function Chats() {
         {chats.map((chat) => (
           <div
             className={
-              chat.personType == "Sender"
+              chat.personType === "Sender"
                 ? classes.messageSender
                 : classes.messageReceiver
             }
             key={chat.id}
           >
             <div className={classes.personDetails}>
-              <img src={chat.pic}></img>
+              <img src={chat.pic} alt="image"></img>
               {chat.onLineStatus === "online" ? (
                 <p className={classes.status}></p>
               ) : null}
@@ -108,7 +108,7 @@ function Chats() {
                 <FontAwesomeIcon
                   style={{ color: "grey" }}
                   icon={faCalendarDays}
-                />
+                />{" "}
                 {chat.time} | {chat.day}
               </div>
             </div>
