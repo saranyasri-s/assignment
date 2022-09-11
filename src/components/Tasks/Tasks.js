@@ -93,18 +93,16 @@ function Tasks() {
               onDragEnter={(e) => {
                 dragOverItem.current = index;
               }}
-              drag={(e) => {
-                dragOverItem.current = index;
-              }}
               onDragEnd={sortTheTasks}
               onDragOver={(e) => e.preventDefault()}
               onTouchStart={(e) => {
-                console.log(index);
                 dragItem.current = index;
               }}
+              onTouchMove={(e) => {
+                dragOverItem.current = index;
+              }}
               onDrop={(e) => {
-                console.log(index);
-                dragItem.current = index;
+                dragOverItem.current = index;
               }}
               onTouchEnd={sortTheTasks}
             >
