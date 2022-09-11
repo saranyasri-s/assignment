@@ -1,0 +1,103 @@
+.Header {
+  display: flex;
+  justify-content: space-between;
+
+  margin: 20px 0;
+  background-color: #fcfcfcc2;
+  padding: 3px 25px 20px 25px;
+  flex-wrap: wrap;
+}
+.Header_left {
+  display: flex;
+  width: 50%;
+  align-items: center;
+}
+
+.Header_left_planeLogo {
+  min-height: 30px;
+  min-width: 30px;
+  color: black;
+}
+.Header_left_right {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  color: grey;
+  font-size: small;
+}
+.Header_left_right .para {
+  font-size: 18px;
+  color: black;
+  font-weight: 600;
+  padding-bottom: 5px;
+}
+.planeLogo {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border: 1px solid #d2bfbf24;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 2px 2px #80808024;
+  margin-right: 10px;
+}
+.Header_right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Header_right_star {
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 2px;
+  padding: 3px 5px;
+
+  color: white;
+}
+.Header_right_button {
+  min-width: 80px;
+  height: 30px;
+  padding: 0 6px;
+  background-color: #23ab69eb;
+  color: white;
+  border: 1px solid #23ab69eb;
+  border-radius: 3px;
+  font-weight: 550;
+  margin-left: 10px;
+  outline: none;
+  cursor: pointer;
+}
+@media (max-width: 350px) {
+  .planeLogo {
+    display: none;
+  }
+  .Header_left {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .Header {
+    display: flex;
+    flex-flow: column;
+  }
+  .Header_left_right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .description {
+    font-size: "13px";
+    color: "#000000a6";
+  }
+  .Header_right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .Header_left_right {
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}
