@@ -8,6 +8,16 @@ function Chats() {
   const [enteredText, setEnteredText] = useState("");
   const [chats, setChats] = useState([
     {
+      text: "Smiling is definitely one of the best beauty remedies. If you have a good sense of humor and a good approach to life, that’s beautiful",
+      personName: "John Wick",
+      personType: "Receiver",
+      time: "11:00 AM",
+      day: "Yesterday",
+      pic: person2,
+      onLineStatus: "online",
+      id: 4,
+    },
+    {
       text: "Life is short. Smile while you still have teeth, Share your smile with the world ",
       personName: "Viggo",
       personType: "Sender",
@@ -37,16 +47,6 @@ function Chats() {
       onLineStatus: "online",
       id: 3,
     },
-    {
-      text: "Smiling is definitely one of the best beauty remedies. If you have a good sense of humor and a good approach to life, that’s beautiful",
-      personName: "John Wick",
-      personType: "Receiver",
-      time: "11:00 AM",
-      day: "Yesterday",
-      pic: person2,
-      onLineStatus: "online",
-      id: 4,
-    },
   ]);
   const handleChange = (e) => {
     setEnteredText(e.target.value);
@@ -61,11 +61,11 @@ function Chats() {
       amORpm = "PM";
     }
     const min = todayDate.getMinutes();
-    console.log(hr, min);
+
     let newChatadded = {
       text: enteredText,
       personName: "Viggo",
-      personType: "Sender",
+      personType: "Receiver",
       time: `${hr}:${min} ${amORpm}`,
       day: "Today",
       pic: person1,

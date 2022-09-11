@@ -60,7 +60,10 @@ function Tasks() {
     // update the actual tasks
     setTaskList(newTasks);
   };
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(taskList);
+  };
   return (
     <div>
       <header className={classes.header}>
@@ -81,8 +84,8 @@ function Tasks() {
                 dragOverItem.current = index;
               }}
               onDragEnd={sortTheTasks}
-              onDragOver={e=>e.preventDefault()}
-           >
+              onDragOver={(e) => e.preventDefault()}
+            >
               <div
                 className={classes.task}
                 style={{ borderLeft: `3px solid ${tsk.sideBorderColor}` }}
@@ -112,7 +115,9 @@ function Tasks() {
       </main>
       <div className={classes.buttons}>
         <button className={classes.cancel}>Cancel</button>
-        <button className={classes.save}>Save</button>
+        <button className={classes.save} onClick={handleSubmit}>
+          Save
+        </button>
       </div>
     </div>
   );
