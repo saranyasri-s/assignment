@@ -8,7 +8,7 @@ function App() {
     <div className={classes.App}>
       <NavBar></NavBar>
       <Header></Header>
-      <main>
+      <main className={classes.main}>
         <Tasks></Tasks>
         <Chats></Chats>
       </main>

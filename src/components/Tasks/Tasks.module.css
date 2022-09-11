@@ -1,0 +1,103 @@
+.header {
+  display: flex;
+  padding: 6px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.356);
+  justify-content: flex-start;
+  align-items: center;
+}
+.taskListLogo {
+  background: url("../../assets/tasklist.png");
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  margin-right: 6px;
+}
+.list {
+  box-sizing: border-box;
+}
+.singleTask {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.356);
+  padding: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.singleTask .task {
+  padding: 0 6px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.box {
+  width: 9px;
+  height: 9px;
+  margin: 4px;
+  border: 1px solid #80808087;
+  border-radius: 2px;
+}
+.taskNames {
+  display: flex;
+  flex-flow: column;
+  margin-left: 10px;
+}
+.taskName {
+  font-weight: 600;
+}
+.taskDes {
+  color: grey;
+  font-size: 12px;
+  margin-top: 3px;
+}
+.planned {
+  background-color: rgb(23, 158, 242);
+  color: white;
+  border: 1px solid rgb(23, 158, 242);
+  border-radius: 3px;
+  padding: 2px 7px;
+  font-size: 10px;
+  margin-left: 5px;
+}
+.rejected {
+  background-color: rgb(213, 14, 14);
+  color: white;
+  border: 1px solid rgb(213, 14, 14);
+  border-radius: 3px;
+  padding: 2px 7px;
+  font-size: 10px;
+  margin-left: 5px;
+}
+.taskPic {
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  border-radius: 2px;
+}
+.latestTask {
+  background-color: #23ab69eb;
+  color: white;
+  border: 1px solid #23ab69eb;
+  border-radius: 6px;
+  padding: 2px 7px;
+  font-size: 10px;
+  margin-left: 5px;
+}
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}
+.cancel {
+  border: none;
+  color: blue;
+  background-color: white;
+  padding: 5px;
+  border: 1px solid white;
+}
+.save {
+  color: white;
+  background-color: blue;
+  padding: 5px;
+  border: 1px solid blue;
+  cursor: pointer;
+  border-radius: 3px;
+}
