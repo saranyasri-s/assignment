@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import classes from "./Tasks.module.css";
 import person from "../../assets/person1influx.png";
+import { DragDropTouch } from "drag-drop-touch";
 function Tasks() {
   // list of tasks
   const [taskList, setTaskList] = useState([
@@ -92,8 +93,20 @@ function Tasks() {
               onDragEnter={(e) => {
                 dragOverItem.current = index;
               }}
+              drag={(e) => {
+                dragOverItem.current = index;
+              }}
               onDragEnd={sortTheTasks}
               onDragOver={(e) => e.preventDefault()}
+              onTouchStart={(e) => {
+                console.log(index);
+                dragItem.current = index;
+              }}
+              onDrop={(e) => {
+                console.log(index);
+                dragItem.current = index;
+              }}
+              onTouchEnd={sortTheTasks}
             >
               <div
                 className={classes.task}
