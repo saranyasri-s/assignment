@@ -1,13 +1,17 @@
 import React from "react";
 import classes from "./Header.module.css";
+import plane from "../../assets/plane.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faplane } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faPlane } from "@fortawesome/free-solid-svg-icons";
 function Header() {
   return (
     <div className={classes.Header}>
       <div className={classes.Header_left}>
         <div className={classes.planeLogo}>
-          <i class="icon-plane"></i>
+          <FontAwesomeIcon
+            icon={faPlane}
+            style={{ transform: "rotate(300deg)" ,color:"skyblue"}}
+          />
         </div>
         <div className={classes.Header_left_right}>
           <p className={classes.para}>Analytics Dashboard</p>
@@ -19,7 +23,7 @@ function Header() {
       </div>
       <div className={classes.Header_right}>
         <div className={classes.Header_right_star}>
-          <i class="fas fa-star" style={{ color: "white" }}></i>
+          <FontAwesomeIcon icon={faStar} />
         </div>
         <button className={classes.Header_right_button}> + create new</button>
       </div>

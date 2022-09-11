@@ -5,6 +5,13 @@
   justify-content: flex-start;
   align-items: center;
 }
+.main {
+  padding: 10px;
+  min-height: 330px;
+  max-height: 330px;
+  overflow-y: scroll;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.356);
+}
 .taskListLogo {
   background: url("../../assets/tasklist.png");
   width: 30px;
@@ -21,12 +28,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: move;
 }
 .singleTask .task {
   padding: 0 6px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+.task img {
+  height: 30px;
+  width: 30px;
 }
 .box {
   width: 9px;
@@ -82,9 +94,11 @@
   margin-left: 5px;
 }
 .buttons {
+  min-height: 37px;
   display: flex;
   justify-content: flex-end;
   padding: 10px;
+  align-items: center;
 }
 .cancel {
   border: none;
@@ -96,8 +110,20 @@
 .save {
   color: white;
   background-color: blue;
-  padding: 5px;
+  padding: 3px 5px;
   border: 1px solid blue;
   cursor: pointer;
   border-radius: 3px;
+}
+@media (max-width: 350px) {
+  .latestTask {
+    width: 30%;
+    background-color: #23ab69eb;
+    color: white;
+    border: 1px solid #23ab69eb;
+    border-radius: 6px;
+    padding: 2px 5px;
+    font-size: 9px;
+    margin-left: 2px;
+  }
 }

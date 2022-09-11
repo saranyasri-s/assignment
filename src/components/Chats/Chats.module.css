@@ -1,0 +1,119 @@
+.header {
+  display: flex;
+  padding: 6px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.356);
+  justify-content: flex-start;
+  align-items: center;
+}
+.chatLogo {
+  background: url("../../assets/chatlogo.png");
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  margin-right: 6px;
+}
+.main {
+  padding: 10px;
+  min-height: 330px;
+  max-height: 330px;
+  overflow-y: scroll;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.356);
+}
+
+.messageSender {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 15px;
+}
+.messageSender .personDetails {
+  position: relative;
+  margin-right: 5px;
+}
+.personDetails img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.messageSender .status {
+  height: 8px;
+  width: 8px;
+  background-color: green;
+  border-radius: 50%;
+  position: absolute;
+  top: 21px;
+  left: 21px;
+  border: 2px solid white;
+}
+.messageSender .messageDetails {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  font-size: 12px;
+}
+.messageSender .messageText {
+  padding: 7px;
+  border: 1px solid white;
+  border-radius: 0px 15px 15px 15px;
+  background-color: #44a7ff69;
+  font-size: 12px;
+}
+.messageReceiver {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: row-reverse;
+}
+.messageReceiver .personDetails {
+  width: 15%;
+  position: relative;
+  margin-left: 5px;
+}
+.messageReceiver .personDetails img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.messageReceiver .status {
+  height: 8px;
+  width: 8px;
+  background-color: green;
+  border-radius: 50%;
+  position: absolute;
+  top: 21px;
+  left: 21px;
+  border: 2px solid white;
+}
+.messageReceiver .messageDetails {
+  min-width: 90%;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-size: 12px;
+}
+.messageReceiver .messageText {
+  padding: 7px;
+  border: 1px solid white;
+  border-radius: 15px 0px 15px 15px;
+  background-color: #44a7ff69;
+  font-size: 12px;
+}
+.footer {
+  display: flex;
+  padding: 10px;
+}
+.footer input {
+  width: 80%;
+  padding: 5px;
+  border: 1px solid rgba(100, 91, 91, 0.397);
+  outline: none;
+}
+.footer button {
+  width: 18%;
+  background-color: #23ab69eb;
+  color: white;
+  outline: none;
+  border: 1px solid #23ab69eb;
+  cursor: pointer;
+}

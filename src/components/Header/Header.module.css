@@ -42,6 +42,11 @@
   box-shadow: 2px 2px 2px #80808024;
   margin-right: 10px;
 }
+.planeLogo img {
+  width: 30px;
+  height: 30px;
+  transform: rotate(80deg);
+}
 .Header_right {
   display: flex;
   justify-content: center;
@@ -67,6 +72,11 @@
   margin-left: 10px;
   outline: none;
   cursor: pointer;
+}
+@media (max-width: 550px) {
+  .planeLogo {
+    display: none;
+  }
 }
 @media (max-width: 350px) {
   .planeLogo {

@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import classes from "./Tasks.module.css";
+import person from "../../assets/person1influx.png";
 function Tasks() {
   const [taskList, setTaskList] = useState([
     {
@@ -28,7 +29,7 @@ function Tasks() {
       description: "A short description for this todo item",
       status: null,
       sideBorderColor: "blue",
-      pic: "https://www.psychologytoday.com/us/blog/ask-the-therapist/201809/why-would-people-dislike-nice-person",
+      pic: person,
     },
     {
       taskName: "Wash the car",
@@ -45,35 +46,64 @@ function Tasks() {
       pic: null,
     },
   ]);
+  const dragItem = useRef();
+  const dragOverItem = useRef();
+  const sortTheTasks = (e) => {
+    e.preventDefault();
+    let newTasks = [...taskList];
+    // remove and save the drag task content;
+    let draggedTaskContent = newTasks.splice(dragItem.current, 1)[0];
+    //   to switch the position
+    newTasks.splice(dragOverItem.current, 0, draggedTaskContent);
+    dragItem.current = null;
+    dragOverItem.current = null;
+    // update the actual tasks
+    setTaskList(newTasks);
+  };
+
   return (
     <div>
       <header className={classes.header}>
         <div className={classes.taskListLogo}></div>
         <div>Task List</div>
       </header>
-      <main>
+      <main className={classes.main}>
         <div className={classes.list}>
-          {taskList.map((tsk) => (
-            <div className={classes.singleTask}>
+          {taskList.map((tsk, index) => (
+            <div
+              className={classes.singleTask}
+              key={index}
+              draggable
+              onDragStart={(e) => {
+                dragItem.current = index;
+              }}
+              onDragEnter={(e) => {
+                dragOverItem.current = index;
+              }}
+              onDragEnd={sortTheTasks}
+              onDragOver={e=>e.preventDefault()}
+           >
               <div
                 className={classes.task}
                 style={{ borderLeft: `3px solid ${tsk.sideBorderColor}` }}
               >
                 <div className={classes.box}></div>
-                {tsk.pic ? <img className={classes.taskPic}></img> : null}
+                {tsk.pic ? (
+                  <img className={classes.taskPic} src={tsk.pic}></img>
+                ) : null}
 
                 <div className={classes.taskNames}>
                   <p className={classes.taskName}>{tsk.taskName}</p>
                   <p className={classes.taskDes}>{tsk.description}</p>
                 </div>
-                {tsk.status == "Planned" ? (
+                {tsk.status === "Planned" ? (
                   <div className={classes.planned}>PLANNED</div>
                 ) : null}
-                {tsk.status == "Rejected" ? (
+                {tsk.status === "Rejected" ? (
                   <div className={classes.rejected}>REJECTED</div>
                 ) : null}
               </div>
-              {tsk.status == "latest task" ? (
+              {tsk.status === "latest task" ? (
                 <div className={classes.latestTask}>LATEST TASK</div>
               ) : null}
             </div>
