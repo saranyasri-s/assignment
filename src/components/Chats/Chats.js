@@ -76,7 +76,7 @@ function Chats() {
       id: Math.random(),
     };
     let chatsNew = [...chats];
-    chatsNew.push(newChatadded);
+    chatsNew.unshift(newChatadded);
     setChats(chatsNew);
     setEnteredText("");
   };
@@ -108,7 +108,7 @@ function Chats() {
                 <FontAwesomeIcon
                   style={{ color: "grey" }}
                   icon={faCalendarDays}
-                />{" "}
+                />
                 {chat.time} | {chat.day}
               </div>
             </div>
