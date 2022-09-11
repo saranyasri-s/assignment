@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import classes from "./Tasks.module.css";
 import person from "../../assets/person1influx.png";
 function Tasks() {
+  // list of tasks
   const [taskList, setTaskList] = useState([
     {
       taskName: "Wash the car",
@@ -46,8 +47,14 @@ function Tasks() {
       pic: null,
     },
   ]);
+
+  //   use ref to get the index of dragging task
   const dragItem = useRef();
+
+  //   use ref to get the index of over which the task is dragged
   const dragOverItem = useRef();
+
+  //   on drag Over this function reorders the task list and update the state
   const sortTheTasks = (e) => {
     e.preventDefault();
     let newTasks = [...taskList];
@@ -60,6 +67,8 @@ function Tasks() {
     // update the actual tasks
     setTaskList(newTasks);
   };
+
+  //  on clicking save button this function is used to console log the tasks
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(taskList);

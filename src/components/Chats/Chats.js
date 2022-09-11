@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 function Chats() {
   const [enteredText, setEnteredText] = useState("");
+// list of chat messages
   const [chats, setChats] = useState([
     {
       text: "Smiling is definitely one of the best beauty remedies. If you have a good sense of humor and a good approach to life, that’s beautiful",
@@ -53,6 +54,8 @@ function Chats() {
   };
   const addChat = (e) => {
     e.preventDefault();
+
+    // to get the current time when the message is sent
     const todayDate = new Date();
     let amORpm = "AM";
     let hr = todayDate.getHours();
@@ -61,7 +64,7 @@ function Chats() {
       amORpm = "PM";
     }
     const min = todayDate.getMinutes();
-
+// adding the new message sent by john wick to the array
     let newChatadded = {
       text: enteredText,
       personName: "Viggo",
@@ -105,7 +108,7 @@ function Chats() {
                 <FontAwesomeIcon
                   style={{ color: "grey" }}
                   icon={faCalendarDays}
-                />{" "}
+                />
                 {chat.time} | {chat.day}
               </div>
             </div>
