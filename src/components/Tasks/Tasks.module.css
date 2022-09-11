@@ -9,7 +9,7 @@
   padding: 10px;
   min-height: 330px;
   max-height: 330px;
-  overflow-y: hidden;
+  overflow-y: scroll;
   border-bottom: 1px solid rgba(128, 128, 128, 0.356);
 }
 .taskListLogo {
