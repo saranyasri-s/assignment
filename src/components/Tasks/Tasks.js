@@ -4,7 +4,7 @@ import { Droppable, DragDropContext, Draggable } from "react-beautiful-dnd";
 import person from "../../assets/person1influx.png";
 function Tasks() {
   // list of tasks
-  const [selectedItem, setSelectedItem] = useState(null);
+
   const [taskList, setTaskList] = useState([
     {
       taskName: "Wash the car",
@@ -62,13 +62,6 @@ function Tasks() {
     },
   ]);
 
-  //   use ref to get the index of dragging task
-  const dragItem = useRef();
-
-  //   use ref to get the index of over which the task is dragged
-  const dragOverItem = useRef();
-  // const removeItem=(e)=>{
-
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
@@ -87,21 +80,7 @@ function Tasks() {
 
     setTaskList(reorderedItems);
   };
-  //   on drag Over this function reorders the task list and update the state
-  const sortTheTasks = (e) => {
-    let newTasks = [...taskList];
-    // remove and save the drag task content;
-    let draggedTaskContent = newTasks.splice(dragItem.current, 1)[0];
-    //   to switch the position
 
-    newTasks.splice(dragOverItem.current, 0, draggedTaskContent);
-    dragItem.current = null;
-    dragOverItem.current = null;
-    // update the actual tasks
-    setTaskList(newTasks);
-  };
-
-  //  on clicking save button this function is used to console log the tasks
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(taskList);
