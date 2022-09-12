@@ -1,9 +1,10 @@
 import { useState, useRef } from "react";
 import classes from "./Tasks.module.css";
+import { Droppable, DragDropContext, Draggable } from "react-beautiful-dnd";
 import person from "../../assets/person1influx.png";
-import { DragDropTouch } from "drag-drop-touch";
 function Tasks() {
   // list of tasks
+  const [selectedItem, setSelectedItem] = useState(null);
   const [taskList, setTaskList] = useState([
     {
       taskName: "Wash the car",
@@ -11,6 +12,8 @@ function Tasks() {
       status: "Rejected",
       sideBorderColor: "orange",
       pic: null,
+      display: "flex",
+      id: "taskone",
     },
     {
       taskName: "Task with dropdown menu",
@@ -18,6 +21,8 @@ function Tasks() {
       status: "latest task",
       sideBorderColor: "violet",
       pic: null,
+      display: "flex",
+      id: "tasktwo",
     },
     {
       taskName: "Badge on the right task",
@@ -25,6 +30,8 @@ function Tasks() {
       status: "latest task",
       sideBorderColor: "violet",
       pic: null,
+      display: "flex",
+      id: "taskthree",
     },
     {
       taskName: "Go grocery shopping",
@@ -32,6 +39,8 @@ function Tasks() {
       status: null,
       sideBorderColor: "blue",
       pic: person,
+      display: "flex",
+      id: "taskfour",
     },
     {
       taskName: "Wash the car",
@@ -39,6 +48,8 @@ function Tasks() {
       status: "Rejected",
       sideBorderColor: "orange",
       pic: null,
+      display: "flex",
+      id: "taskfive",
     },
     {
       taskName: "Service the car",
@@ -46,6 +57,8 @@ function Tasks() {
       status: "Planned",
       sideBorderColor: "orange",
       pic: null,
+      display: "flex",
+      id: "tasksix",
     },
   ]);
 
@@ -54,14 +67,33 @@ function Tasks() {
 
   //   use ref to get the index of over which the task is dragged
   const dragOverItem = useRef();
+  // const removeItem=(e)=>{
+  const handleStart = () => {
+    let newTasks = [...taskList];
 
+    newTasks[dragItem.current].display = "none";
+    setTaskList(newTasks);
+  };
+  const handleover = () => {
+    // let newTasks = [...taskList];
+    // // remove and save the drag task content;
+    // let draggedTaskContent = newTasks.splice(dragItem.current, 1)[0];
+    // //   to switch the position
+    // draggedTaskContent.display = "flex";
+    // newTasks.splice(dragOverItem.current, 0, draggedTaskContent);
+    // dragItem.current = null;
+    // dragOverItem.current = null;
+    // // update the actual tasks
+    // setTaskList(newTasks);
+  };
+  // }
   //   on drag Over this function reorders the task list and update the state
   const sortTheTasks = (e) => {
-    e.preventDefault();
     let newTasks = [...taskList];
     // remove and save the drag task content;
     let draggedTaskContent = newTasks.splice(dragItem.current, 1)[0];
     //   to switch the position
+
     newTasks.splice(dragOverItem.current, 0, draggedTaskContent);
     dragItem.current = null;
     dragOverItem.current = null;
@@ -81,61 +113,61 @@ function Tasks() {
         <div>Task List</div>
       </header>
       <main className={classes.main}>
-        <div className={classes.list}>
-          {taskList.map((tsk, index) => (
-            <div
-              className={classes.singleTask}
-              key={index}
-              draggable
-              onDragStart={(e) => {
-                dragItem.current = index;
-              }}
-              onDragEnter={(e) => {
-                dragOverItem.current = index;
-              }}
-              onDragEnd={sortTheTasks}
-              onDragOver={(e) => e.preventDefault()}
-              onTouchStart={(e) => {
-                dragItem.current = index;
-              }}
-              onTouchMove={(e) => {
-                dragOverItem.current = index;
-              }}
-              onDrop={(e) => {
-                dragOverItem.current = index;
-              }}
-              onTouchEnd={sortTheTasks}
-            >
+        <DragDropContext>
+          <Droppable droppableId="tasks">
+            {(provided) => (
               <div
-                className={classes.task}
-                style={{ borderLeft: `3px solid ${tsk.sideBorderColor}` }}
+                className={classes.list}
+                {...provided.droppableProps}
+                ref={provided.innerRef}
               >
-                <div className={classes.box}></div>
-                {tsk.pic ? (
-                  <img
-                    className={classes.taskPic}
-                    src={tsk.pic}
-                    alt="image"
-                  ></img>
-                ) : null}
+                {taskList.map((tsk, index) => (
+                  <Draggable key={tsk.id} draggableId={tsk.id} index={index}>
+                    {(provided) => (
+                      <div
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        ref={provided.innerRef}
+                        style={{ display: tsk.display }}
+                        className={classes.singleTask}
+                      >
+                        <div
+                          className={classes.task}
+                          style={{
+                            borderLeft: `3px solid ${tsk.sideBorderColor}`,
+                          }}
+                        >
+                          <div className={classes.box}></div>
+                          {tsk.pic ? (
+                            <img
+                              className={classes.taskPic}
+                              src={tsk.pic}
+                              alt="image"
+                            ></img>
+                          ) : null}
 
-                <div className={classes.taskNames}>
-                  <p className={classes.taskName}>{tsk.taskName}</p>
-                  <p className={classes.taskDes}>{tsk.description}</p>
-                </div>
-                {tsk.status === "Planned" ? (
-                  <div className={classes.planned}>PLANNED</div>
-                ) : null}
-                {tsk.status === "Rejected" ? (
-                  <div className={classes.rejected}>REJECTED</div>
-                ) : null}
+                          <div className={classes.taskNames}>
+                            <p className={classes.taskName}>{tsk.taskName}</p>
+                            <p className={classes.taskDes}>{tsk.description}</p>
+                          </div>
+                          {tsk.status === "Planned" ? (
+                            <div className={classes.planned}>PLANNED</div>
+                          ) : null}
+                          {tsk.status === "Rejected" ? (
+                            <div className={classes.rejected}>REJECTED</div>
+                          ) : null}
+                        </div>
+                        {tsk.status === "latest task" ? (
+                          <div className={classes.latestTask}>LATEST TASK</div>
+                        ) : null}
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
               </div>
-              {tsk.status === "latest task" ? (
-                <div className={classes.latestTask}>LATEST TASK</div>
-              ) : null}
-            </div>
-          ))}
-        </div>
+            )}
+          </Droppable>
+        </DragDropContext>
       </main>
       <div className={classes.buttons}>
         <button className={classes.cancel}>Cancel</button>
