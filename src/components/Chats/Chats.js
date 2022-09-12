@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import classes from "./Chats.module.css";
 import person1 from "../../assets/person2influx.png";
 import person2 from "../../assets/person3influx.png";
@@ -7,6 +7,8 @@ import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 function Chats() {
   const [enteredText, setEnteredText] = useState("");
   // list of chat messages
+  const messagesEndRef = useRef(null);
+
   const [chats, setChats] = useState([
     {
       text: "Smiling is definitely one of the best beauty remedies. If you have a good sense of humor and a good approach to life, that’s beautiful",
@@ -49,9 +51,17 @@ function Chats() {
       id: 3,
     },
   ]);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  useEffect(() => {
+    scrollToBottom();
+  }, [chats]);
+
   const handleChange = (e) => {
     setEnteredText(e.target.value);
   };
+
   const addChat = (e) => {
     e.preventDefault();
 
@@ -87,6 +97,7 @@ function Chats() {
         <div>Chat Box</div>
       </header>
       <main className={classes.main}>
+        <div ref={messagesEndRef} />
         {chats.map((chat) => (
           <div
             className={
