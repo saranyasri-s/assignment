@@ -12,7 +12,7 @@ function Tasks() {
       status: "Rejected",
       sideBorderColor: "orange",
       pic: null,
-      display: "flex",
+
       id: "taskone",
     },
     {
@@ -21,7 +21,7 @@ function Tasks() {
       status: "latest task",
       sideBorderColor: "violet",
       pic: null,
-      display: "flex",
+
       id: "tasktwo",
     },
     {
@@ -30,7 +30,7 @@ function Tasks() {
       status: "latest task",
       sideBorderColor: "violet",
       pic: null,
-      display: "flex",
+
       id: "taskthree",
     },
     {
@@ -39,7 +39,7 @@ function Tasks() {
       status: null,
       sideBorderColor: "blue",
       pic: person,
-      display: "flex",
+
       id: "taskfour",
     },
     {
@@ -48,7 +48,7 @@ function Tasks() {
       status: "Rejected",
       sideBorderColor: "orange",
       pic: null,
-      display: "flex",
+
       id: "taskfive",
     },
     {
@@ -57,7 +57,7 @@ function Tasks() {
       status: "Planned",
       sideBorderColor: "orange",
       pic: null,
-      display: "flex",
+
       id: "tasksix",
     },
   ]);
@@ -68,25 +68,25 @@ function Tasks() {
   //   use ref to get the index of over which the task is dragged
   const dragOverItem = useRef();
   // const removeItem=(e)=>{
-  const handleStart = () => {
-    let newTasks = [...taskList];
 
-    newTasks[dragItem.current].display = "none";
-    setTaskList(newTasks);
+  const reorder = (list, startIndex, endIndex) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+    return result;
   };
-  const handleover = () => {
-    // let newTasks = [...taskList];
-    // // remove and save the drag task content;
-    // let draggedTaskContent = newTasks.splice(dragItem.current, 1)[0];
-    // //   to switch the position
-    // draggedTaskContent.display = "flex";
-    // newTasks.splice(dragOverItem.current, 0, draggedTaskContent);
-    // dragItem.current = null;
-    // dragOverItem.current = null;
-    // // update the actual tasks
-    // setTaskList(newTasks);
+  const onDragEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+    const reorderedItems = reorder(
+      taskList,
+      result.source.index,
+      result.destination.index
+    );
+
+    setTaskList(reorderedItems);
   };
-  // }
   //   on drag Over this function reorders the task list and update the state
   const sortTheTasks = (e) => {
     let newTasks = [...taskList];
@@ -113,8 +113,8 @@ function Tasks() {
         <div>Task List</div>
       </header>
       <main className={classes.main}>
-        <DragDropContext>
-          <Droppable droppableId="tasks">
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="droppable">
             {(provided) => (
               <div
                 className={classes.list}
@@ -128,7 +128,6 @@ function Tasks() {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
-                        style={{ display: tsk.display }}
                         className={classes.singleTask}
                       >
                         <div
@@ -145,11 +144,12 @@ function Tasks() {
                               alt="image"
                             ></img>
                           ) : null}
-
+                          {provided.placeholder}
                           <div className={classes.taskNames}>
                             <p className={classes.taskName}>{tsk.taskName}</p>
                             <p className={classes.taskDes}>{tsk.description}</p>
                           </div>
+                          {provided.placeholder}
                           {tsk.status === "Planned" ? (
                             <div className={classes.planned}>PLANNED</div>
                           ) : null}
